@@ -1,0 +1,32 @@
+services:
+  iceberg_playground:
+    image: newfrontdocker/spark-iceberg-playground:latest
+    hostname: iceberg-streaming-playground
+    container_name: iceberg-streaming-playground
+    environment:
+      - SPARK_LOCAL_HOSTNAME=localhost
+      - PYSPARK_TOTAL_CORES=${PYSPARK_TOTAL_CORES:-4}
+      - PYSPARK_DRIVER_MEMORY=${PYSPARK_DRIVER_MEMORY:-8g}
+    volumes:
+      - "./startup.sh:/opt/spark/work-dir/startup.sh"
+      - "../../datasets:/opt/spark/work-dir/datasets"
+      - "../../notebooks:/opt/spark/work-dir/notebooks"
+    networks:
+      - iceberg
+    ports:
+      - "8888-8889:8888-8889"
+      - "4040:4040"
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 16G
+        reservations:
+          cpus: '2'
+          memory: 4G
+    restart: unless-stopped
+
+networks:
+  iceberg:
+    external: true
+    name: iceberg
