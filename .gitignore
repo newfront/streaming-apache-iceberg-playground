@@ -213,3 +213,9 @@ artifacts
 
 .DS_Store
 */.DS_Store
+
+# Ignore Local Datasets
+2019-Oct.csv
+2019-Nov.csv
+
+docker/lakekeeper/datasets/ecomm_raw/parquet
