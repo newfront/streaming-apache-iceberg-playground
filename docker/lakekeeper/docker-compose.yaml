@@ -11,7 +11,7 @@ services:
       resources:
         limits:
           cpus: '10.0'  # Allow up to 10 CPU cores
-          memory: 48G
+          memory: 32G
         reservations:
           cpus: '4.0'
           memory: 8G
@@ -39,6 +39,14 @@ services:
       timeout: 10s
       retries: 3
       start_period: 3s
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'  # Allow up to 10 CPU cores
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
     depends_on:
       migrate:
         condition: service_completed_successfully
