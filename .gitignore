@@ -218,4 +218,12 @@ artifacts
 2019-Oct.csv
 2019-Nov.csv
 
+# Ignore Minio local volume
+docker/lakekeeper/minio/.minio.sys
+docker/lakekeeper/minio/examples
+
+spark-warehouse
+
 docker/lakekeeper/datasets/ecomm_raw/parquet
+
+.venv

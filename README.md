@@ -6,7 +6,7 @@ To run the demo for yourself, do the following:
 
 1. Read the [README.md](docker/lakekeeper/datasets/ecomm_raw/README.md) and download the `2019-Oct.csv` and `2019-Nov.csv` reference datasets.
 
-2. Then Run the following command to get started.
+2. From the root project directory (where you are now!), Run the following command to get started.
 ```bash
 cd docker/lakekeeper &&
 docker network ls | grep -q iceberg || docker network create iceberg &&
