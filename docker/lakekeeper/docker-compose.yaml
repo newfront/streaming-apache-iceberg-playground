@@ -7,6 +7,14 @@ services:
       initialwarehouse:
         condition: service_completed_successfully
     command: start-notebook.sh --NotebookApp.token=''
+    deploy:
+      resources:
+        limits:
+          cpus: '10.0'  # Allow up to 10 CPU cores
+          memory: 48G
+        reservations:
+          cpus: '4.0'
+          memory: 8G
     volumes:
       - ./notebooks:/home/jovyan/notebooks/
       - ./datasets:/home/jovyan/datasets/
@@ -138,6 +146,8 @@ services:
       timeout: 10s
       retries: 2
       start_period: 15s
+    volumes:
+      - ./minio:/data
     networks:
       - iceberg
     ports:
@@ -154,7 +164,7 @@ services:
       /bin/sh -c "
       sleep 5;
       /usr/bin/mc alias set dockerminio http://minio:9000 minio-root-user minio-root-password;
-      /usr/bin/mc mb dockerminio/examples;
+      /usr/bin/mc mb --ignore-existing dockerminio/examples;
       exit 0;
       "
     networks:
