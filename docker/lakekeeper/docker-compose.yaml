@@ -10,14 +10,15 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '10.0'  # Allow up to 10 CPU cores
-          memory: 32G
+          cpus: '16.0'  # Allow up to 16 CPU cores : Note: adjust this for your docker resources (leave 2 cores per container running)
+          memory: 48G # Adjust this for your docker resources : Use the 60% rule (total_ram * .6)
         reservations:
-          cpus: '4.0'
-          memory: 8G
+          cpus: '8.0' # Adjust the minimum number of CPU Cores: I've allocated 24 cores
+          memory: 16G # Adjust for the minimum amount of RAM. Use the 20% rule (total_ram * .2)
     volumes:
       - ./notebooks:/home/jovyan/notebooks/
       - ./datasets:/home/jovyan/datasets/
+      - ./checkpoints:/home/jovyan/checkpoints/ # this directory is for spark structured streaming
     networks:
       - iceberg
     ports:
