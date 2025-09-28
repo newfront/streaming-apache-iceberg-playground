@@ -223,6 +223,7 @@ docker/lakekeeper/minio/.minio.sys
 docker/lakekeeper/minio/examples
 
 spark-warehouse
+docker/lakekeeper/checkpoints/streaming_ecomm_aggs
 
 docker/lakekeeper/datasets/ecomm_raw/parquet
 
